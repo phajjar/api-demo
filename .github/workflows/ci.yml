@@ -78,7 +78,9 @@ jobs:
       - name: Check for any PHP errors in the log.
         run: |
           ls -al /var/log/apache2
-          sudo apachectl -S
+          ps aux | grep apache
+          ps aux | grep httpd
+          whoami
           #grep '\[php:error\]' /var/log/apache2/api_error.log > errors.txt
           #if [ -s errors.txt ]; then 
           #  echo "PHP Errors Found:"
