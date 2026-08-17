@@ -12,3 +12,6 @@ quotes-project*.sh
 
 # No response.txt just in case that's not deleted.
 response.txt
+
+# No .DS_Store files.
+.DS_Store
