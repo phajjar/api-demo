@@ -74,13 +74,11 @@ jobs:
         run: |
           chmod +x ./quotes-validate.sh; ./quotes-validate.sh
 
-      # Check for runtime errors.  Copy any string containing a PHP error to errors.txt and return 1 if not empty.  Return 0 otherwise.
-      - name: Check for any PHP errors in the log.
+      # Check for runtime errors.  Note that the log file is inside of the container running on the runner, not directly on the runner itself.
+      - name: Copy the error log out of the container and check for any PHP errors in the log.
         run: |
-          ls -al /var/log/apache2
-          ps aux | grep apache
-          ps aux | grep httpd
-          whoami
+          docker cp api-demo:/var/log/apache2/api_error.log ./api_error.log
+          ls -al
           #find /var -name "api_error.log" 2>/dev/null
           #grep '\[php:error\]' /var/log/apache2/api_error.log > errors.txt
           #if [ -s errors.txt ]; then 
