@@ -79,13 +79,12 @@ jobs:
         run: |
           docker cp api-demo:/var/log/apache2/api_error.log ./api_error.log
           ls -al
-          #find /var -name "api_error.log" 2>/dev/null
           #grep '\[php:error\]' /var/log/apache2/api_error.log > errors.txt
-          #if [ -s errors.txt ]; then 
-          #  echo "PHP Errors Found:"
-          #  cat errors.txt
-          #  exit 1
-          #else 
-          #  echo "No PHP errors found";
-          #  exit 0
-          #fi
+          if [ -s errors.txt ]; then 
+            echo "Errors Found:"
+            cat api_error.log
+            exit 1
+          else 
+            echo "No errors found";
+            exit 0
+          fi
