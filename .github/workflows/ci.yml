@@ -78,6 +78,10 @@ jobs:
       - name: Check for any PHP errors in the log.
         run: |
           ls -al /var/log/apache2
+          echo "Apache httpd log dir ["$APACHE_LOG_DIR"]"
+          echo "Apache virtual hosts:"
+          apachectl -S
+          apachectl -t -D DUMP_VHOSTS
           #grep '\[php:error\]' /var/log/apache2/api_error.log > errors.txt
           #if [ -s errors.txt ]; then 
           #  echo "PHP Errors Found:"
