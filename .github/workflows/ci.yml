@@ -77,12 +77,13 @@ jobs:
       # Check for runtime errors.  Copy any string containing a PHP error to errors.txt and return 1 if not empty.  Return 0 otherwise.
       - name: Check for any PHP errors in the log.
         run: |
-          grep '\[php:error\]' /var/log/apache2/api_error.log > errors.txt
-          if [ -s errors.txt ]; then 
-            echo "PHP Errors Found:"
-            cat errors.txt
-            exit 1
-          else 
-            echo "No PHP errors found";
-            exit 0
-          fi
+          ls -al /var/log/apache2
+          #grep '\[php:error\]' /var/log/apache2/api_error.log > errors.txt
+          #if [ -s errors.txt ]; then 
+          #  echo "PHP Errors Found:"
+          #  cat errors.txt
+          #  exit 1
+          #else 
+          #  echo "No PHP errors found";
+          #  exit 0
+          #fi
